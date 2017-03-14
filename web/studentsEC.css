@@ -1,0 +1,106 @@
+.floatingBox {
+    display: inline-block;
+    width: 228px;
+    height: 199px;
+    margin: 10px;
+    border: 3px solid #4d7123;
+    padding: 5px;
+    background-color: #e8e8e8;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+#alignPlease {
+    width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#tileTable {
+    float: right;
+    /*margin-right: 207px;*/
+    /*or*/
+    padding: 25px 0px;
+    margin-bottom: -20px;
+}
+
+#tilesContainer {
+    clear: right;
+}
+
+#titleAttributes {
+    margin-left: 10px;
+    margin-bottom: -21px;
+    color: #4d7123;
+}
+
+.makeItTransparent {
+    color: transparent;
+    /*opacity: 0;*/
+}
+
+.glyphicon-spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+
+.modal-dialog {
+    width: 45%;
+}
+
+.glyphicon-plus {
+    opacity: 100;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.notTransparent {
+    color: inherit;
+}
+
+.progress-bar {
+    animation: 1.5s linear 0s normal none infinite progress-bar-stripes;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #C5E86C;
+}
+
+.table-bordered {
+    border: 2px solid #275D38;
+}
+
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 2px solid #275D38;
+}
+
+#logo {
+    padding-top:10px;
+}
+
+#topRight {
+    padding-right:0px;
+    margin-bottom: 8px;
+}
