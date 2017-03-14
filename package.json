@@ -1,0 +1,28 @@
+{
+  "name": "school-web3-students",
+  "version": "1.0.0",
+  "description": "### Initial State This was an existing project we build last year for another class. It had these features: * thign 1 * thing 2",
+  "main": "server/server3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkRyanDev/school-web3-students.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarkRyanDev/school-web3-students/issues"
+  },
+  "homepage": "https://github.com/MarkRyanDev/school-web3-students#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "compression": "^1.6.2",
+    "lodash": "^4.17.4",
+    "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
+    "serve-favicon": "^2.4.1",
+    "sleep": "^5.1.0"
+  }
+}
