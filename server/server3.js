@@ -15,14 +15,14 @@ var fs = require('fs');
 //--------------------------load express middleware modules----------------------------------------
 
 var fsRouter = require('./students-fs-dao.js');
-var mysqlRouter = require('./students-mysql-dao.js');
+//var mysqlRouter = require('./students-mysql-dao.js');
 
 //var _ = require('lodash');
 var logger = require('morgan');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser'); //NEW
-var sleepAttribute = require('sleep');
+//var sleepAttribute = require('sleep');
 
 //create express app
 var app = express();
@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({
 })); // for parsing application
 
 app.use('/api/v1', fsRouter);
-app.use('/api/v2', mysqlRouter);
+//app.use('/api/v2', mysqlRouter);
 
 //------------------Helper Functions--------------------------------
 
@@ -74,7 +74,7 @@ app.use('/api/v2', mysqlRouter);
 // app.get('/api/v1/students/:id.json', function(req, res) {
 //     fs.readFile(`students/${req.params.id}.json`, 'utf8', function(err, data) {
 //         if (err) throw err;
-//         //sleepAttribute.usleep(50000); //simulate server access time
+//         //sleepAttribute.usleep(50000); //simulate server s time
 //         //was getting strings, no idea why
 //         data = JSON.parse(data);
 //         data.year = parseInt(data.year);
@@ -128,8 +128,8 @@ app.get('*', function(req, res) {
     res.status(404).sendFile(WEB + '/404.html');
 });
 
-var server = app.listen(process.env.PORT, process.env.IP, function() {
-    console.log(`Server listening on port ${process.env.PORT}`);  
+var server = app.listen(8080, "127.0.0.1", function() {
+    console.log(`Server listening on port 8080`);
 });
 
 console.log('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-790NerRe_ptgJZdBOXOFGX7fFqPJ9PjIMLucI/edit#gid=0');
