@@ -60,3 +60,4 @@ typings/
 
 # stuff we're adding
 .idea
+.vscode
