@@ -6,3 +6,9 @@ function yearNumberToWord(year) {
     if (year > 4) return "You have attended College for longer than 4 years. Congrats, you must be a CS student :)  Good Luck";
     return "Error";
 }
+angular.module('app', [])
+    .controller('test', ['$scope', function($scope) {
+        // let self = this;
+        $scope.testdata = "hello world";
+}]);
+ 

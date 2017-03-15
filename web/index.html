@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 
 <head>
     <title>Fun with Tables</title>
@@ -10,16 +10,21 @@
 
     <script src="lib/lodash-4.14.1.min.js"></script>
     <script src="lib/js.cookie-2.1.2.js"></script>
+    <script src="lib/angular.min.js"></script>
     <script src="studentsEC.js"></script>
 
     <link rel="stylesheet" href="studentsEC.css" type="text/css" />
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div>
         <div>
             <div id="logo">
                 <img src="img/logo.png" alt="test" height: "500"></img>
+            </div>
+
+            <div ng-controller="test">
+                {{testdata}}
             </div>
 
             <div id='topRight'>
