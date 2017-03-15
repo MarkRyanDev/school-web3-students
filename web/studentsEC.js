@@ -7,8 +7,23 @@ function yearNumberToWord(year) {
     return "Error";
 }
 angular.module('app', [])
-    .controller('test', ['$scope', function($scope) {
-        // let self = this;
-        $scope.testdata = "hello world";
+    .factory('studentService', function($http) {
+        //HTTP requests go here
+        let studentService = {
+            getStudents: function() {
+                return $http.get('/api/v1/students.json');
+            }
+        };
+        return studentService;
+    })
+    .controller('test', ['$scope', 'studentService', '$http', function($scope, studentService, $http) {
+        $scope.students = [];
+        studentService.getStudents().then(function(res) {
+            _.each(res.data, function(id){
+                $http.get(`/api/v1/students/${id}.json`).then(function(res){
+                    $scope.students.push(res.data);
+                });
+            });
+        });
 }]);
  

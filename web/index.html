@@ -22,11 +22,6 @@
             <div id="logo">
                 <img src="img/logo.png" alt="test" height: "500"></img>
             </div>
-
-            <div ng-controller="test">
-                {{testdata}}
-            </div>
-
             <div id='topRight'>
                 <h1 id="titleAttributes" align="right">Student Information</h1>
                 <div id="tileTable">
@@ -61,6 +56,7 @@
             <tbody id="tableBody">
             </tbody>
         </table>
+         <pre ng-controller="test">{{students | json}}</pre>
     </div>
 </body>
 
