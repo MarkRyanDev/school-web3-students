@@ -6,86 +6,81 @@
 
 
     <link rel='shortcut icon' href='favicon.ico' type='image/x-icon' />
-
+    <link rel="stylesheet" href="lib/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/lib/angular-material.min.css" type="text/css" />
     <link rel="stylesheet" href="studentsEC.css" type="text/css" />
 </head>
 
-<body ng-controller="test">
-    <div>
-        <div id="logo">
-            <img src="img/logo.png" alt="test" height: "500"></img>
-        </div>
-        <div id='topRight'>
-            <h1 id="titleAttributes" align="right">Student Information</h1>
-            <div id="tileTable">
-                <button id="tileButton" type="button" title='Show Tile View'><span>tile</span></button>
-                <button id="tableButton" type="button" title='Show Table View'><span>table</span></button>
+<body ng-controller="studentsController">
+    <div id="superContainer">
+        <div>
+            <div id="logo">
+                <img src="img/logo.png" alt="UVU Logo" height: "500"></img>
+            </div>
+            <div id='topRight'>
+                <h1 id="titleAttributes" align="right">Student Information</h1>
+                <div id="tileTable">
+                    <button id="tileButton" type="button" title='Show Tile View'><span>tile</span></button>
+                    <button id="tableButton" type="button" title='Show Table View'><span>table</span></button>
+                </div>
             </div>
         </div>
+
+        <div id="tilesContainer" class="hidden">
+        </div>
+
+        <table id="tableClass" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th>
+                        <button type="button" id="addNew" title='Click to Add New Student'
+                            ng-click="showAdvanced()"
+                            class="mdl-button mdl-js-button mdl-button--mini-fab mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">add</i>
+                        </button>
+                        <button type="button" id="restore" title='Click to Restore Deleted Student' 
+                            ng-disabled="deletedStudents.length == 0" ng-click="restoreStudent()"
+                            class="mdl-button mdl-js-button mdl-button--mini-fab mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">restore</i>
+                        </button>
+                    </th>
+                    <th id="name" class="cursor mdl-data-table__cell--non-numeric">Name></th>
+                    <th id="startingDate" class="cursor mdl-data-table__cell--non-numeric">Starting Date></th>
+                    <th id="year" class="cursor mdl-data-table__cell--non-numeric">Year></th>
+                    <th id="streetAddress" class="cursor mdl-data-table__cell--non-numeric">Street Address></th>
+                    <th id="city" class="cursor mdl-data-table__cell--non-numeric">City></th>
+                    <th id="state" class="cursor mdl-data-table__cell--non-numeric">State></th>
+                    <th id="zip" class="cursor mdl-data-table__cell--non-numeric">Zip Code></th>
+                    <th id="phoneNumber" class="cursor mdl-data-table__cell--non-numeric">Phone Number></th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr ng-repeat="student in students">
+                    <td>                        
+                        <button type="button" id="restore" title='Click to Restore Deleted Student' 
+                            class="mdl-button mdl-js-button mdl-button--mini-fab mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button type="button" id="restore" title='Click to Restore Deleted Student' 
+                            ng-click="removeStudent(student)"
+                            class="mdl-button mdl-js-button mdl-button--mini-fab mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">{{student.lname}}, {{student.fname}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{student.startDate}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{student.year}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{student.street}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{student.city}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{student.state}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{student.zip}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{student.phone}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre>{{students | json}}</pre>
     </div>
-
-    <div id="tilesContainer" class="hidden">
-    </div>
-
-
-<div>
-
-  <div layout="row">
-
-    <div flex>First item in row</div>
-    <div flex="20">Second item in row</div>
-
-  </div>
-  <div layout="column">
-
-    <div flex="66">First item in column</div>
-    <div flex="33">Second item in column</div>
-
-  </div>
-
-</div>
-
-
-    <table id="tableClass">
-        <thead>
-            <tr>
-                <!--up arrow is &#9650-->
-                <!--down arrow is &#9660-->
-                <th>
-                    <button type="button" id="addNew" title='Click to Add New Student'><span>new</span></button>
-                    <button type="button" id="restore" title='Click to Restore Deleted Student' 
-                        ng-disabled="deletedStudents.length == 0" ng-click="restoreStudent()"><span>restore</span></button>
-                </th>
-                <th id="name" class="cursor">Name></th>
-                <th id="startingDate" class="cursor">Starting Date></th>
-                <th id="year" class="cursor">Year></th>
-                <th id="streetAddress" class="cursor">Street Address></th>
-                <th id="city" class="cursor">City></th>
-                <th id="state" class="cursor">State></th>
-                <th id="zip" class="cursor">Zip Code></th>
-                <th id="phoneNumber" class="cursor">Phone Number></th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <tr ng-repeat="student in students">
-                <td>
-                    <button>Edit</button>
-                    <button ng-click="removeStudent(student)">Delete</button>
-                </td>
-                <td>{{student.lname}}, {{student.fname}}</td>
-                <td>{{student.startDate}}</td>
-                <td>{{student.year}}</td>
-                <td>{{student.street}}</td>
-                <td>{{student.city}}</td>
-                <td>{{student.state}}</td>
-                <td>{{student.zip}}</td>
-                <td>{{student.phone}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <pre>{{students | json}}</pre>
-    
 
 
     <script src="lib/lodash-4.14.1.min.js"></script>
@@ -95,6 +90,7 @@
     <script src="lib/angular-animate.min.js"></script>
     <script src="lib/angular-messages.min.js"></script>
     <script src="lib/angular-material.min.js"></script>
+    <script src="lib/material.min.js"></script>
     
     <script src="sortComparators.js"></script>
     <script src="studentsEC.js"></script>

@@ -6,7 +6,7 @@ function yearNumberToWord(year) {
     if (year > 4) return "You have attended College for longer than 4 years. Congrats, you must be a CS student :)  Good Luck";
     return "Error";
 }
-angular.module('app', [])
+angular.module('app', ['ngMaterial'])
     .factory('studentService', function($http) {
         //HTTP requests go here
         let studentService = {
@@ -16,7 +16,8 @@ angular.module('app', [])
         };
         return studentService;
     })
-    .controller('test', ['$scope', 'studentService', '$http', function($scope, studentService, $http) {
+    .controller('studentsController', ['$scope', 'studentService', '$http', '$mdDialog',
+        function studentsController($scope, studentService, $http, $mdDialog) {
         $scope.students = [];
         $scope.deletedStudents = [];
         studentService.getStudents().then(function(res) {
@@ -42,5 +43,20 @@ angular.module('app', [])
                 $scope.students.push(studentToRestore);
             })
         }
+        $scope.showAdvanced = function(ev) {
+            $mdDialog.show({
+                controller: studentsController,
+                templateUrl: 'dialog1.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+            })
+            .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                $scope.status = 'You cancelled the dialog.';
+            });
+        };
 }]);
  

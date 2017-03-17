@@ -104,3 +104,12 @@
     padding-right:0px;
     margin-bottom: 8px;
 }
+
+#tableClass {
+    clear: both;
+    width: 100%;
+}
+
+#superContainer{
+    margin: 10px;
+}
