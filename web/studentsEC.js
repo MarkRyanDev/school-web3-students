@@ -21,9 +21,18 @@ angular.module('app', [])
         studentService.getStudents().then(function(res) {
             _.each(res.data, function(id){
                 $http.get(`/api/v1/students/${id}.json`).then(function(res){
-                    $scope.students.push(res.data);
+                    let student = res.data;
+                    student.id = id;
+
+                    $scope.students.push(student);
                 });
             });
         });
+        $scope.removeStudent=function(student){
+            // _.remove($scope.students, function(s){
+            //     return s.id === student.id;
+            // });
+            _.remove($scope.students, student);
+        }
 }]);
  
