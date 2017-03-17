@@ -18,6 +18,10 @@
   "homepage": "https://github.com/MarkRyanDev/school-web3-students#readme",
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-animate": "^1.6.3",
+    "angular-aria": "^1.6.3",
+    "angular-material": "^1.1.3",
+    "angular-messages": "^1.6.3",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "express": "^4.15.2",

@@ -4,15 +4,10 @@
 <head>
     <title>Fun with Tables</title>
 
-    <script src="sortComparators.js"></script>
 
     <link rel='shortcut icon' href='favicon.ico' type='image/x-icon' />
 
-    <script src="lib/lodash-4.14.1.min.js"></script>
-    <script src="lib/js.cookie-2.1.2.js"></script>
-    <script src="lib/angular.min.js"></script>
-    <script src="studentsEC.js"></script>
-
+    <link rel="stylesheet" href="/lib/angular-material.min.css" type="text/css" />
     <link rel="stylesheet" href="studentsEC.css" type="text/css" />
 </head>
 
@@ -32,6 +27,25 @@
 
     <div id="tilesContainer" class="hidden">
     </div>
+
+
+<div>
+
+  <div layout="row">
+
+    <div flex>First item in row</div>
+    <div flex="20">Second item in row</div>
+
+  </div>
+  <div layout="column">
+
+    <div flex="66">First item in column</div>
+    <div flex="33">Second item in column</div>
+
+  </div>
+
+</div>
+
 
     <table id="tableClass">
         <thead>
@@ -71,6 +85,19 @@
         </tbody>
     </table>
     <pre>{{students | json}}</pre>
+    
+
+
+    <script src="lib/lodash-4.14.1.min.js"></script>
+    <script src="lib/js.cookie-2.1.2.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-aria.min.js"></script>
+    <script src="lib/angular-animate.min.js"></script>
+    <script src="lib/angular-messages.min.js"></script>
+    <script src="lib/angular-material.min.js"></script>
+    
+    <script src="sortComparators.js"></script>
+    <script src="studentsEC.js"></script>
 </body>
 
 </html>
