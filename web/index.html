@@ -40,7 +40,8 @@
                 <!--down arrow is &#9660-->
                 <th>
                     <button type="button" id="addNew" title='Click to Add New Student'><span>new</span></button>
-                    <button type="button" id="restore" title='Click to Restore Deleted Student' disabled><span>restore</span></button>
+                    <button type="button" id="restore" title='Click to Restore Deleted Student' 
+                        ng-disabled="deletedStudents.length == 0" ng-click="restoreStudent()"><span>restore</span></button>
                 </th>
                 <th id="name" class="cursor">Name></th>
                 <th id="startingDate" class="cursor">Starting Date></th>

@@ -18,6 +18,7 @@ angular.module('app', [])
     })
     .controller('test', ['$scope', 'studentService', '$http', function($scope, studentService, $http) {
         $scope.students = [];
+        $scope.deletedStudents = [];
         studentService.getStudents().then(function(res) {
             _.each(res.data, function(id){
                 $http.get(`/api/v1/students/${id}.json`).then(function(res){
@@ -28,9 +29,18 @@ angular.module('app', [])
                 });
             });
         });
-        $scope.removeStudent=function(student){
+        $scope.removeStudent = function(student){
             $http.delete(`/api/v1/students/${student.id}.json`);
-            _.remove($scope.students, student);
+            let deletedStudent = _.remove($scope.students, student)[0];
+            delete deletedStudent.id;
+            $scope.deletedStudents.push(deletedStudent);
+        }
+        $scope.restoreStudent = function(){
+            let studentToRestore = $scope.deletedStudents.pop();
+            $http.post('/api/v1/students', studentToRestore).then(function(res){
+                studentToRestore.id = res.data;
+                $scope.students.push(studentToRestore);
+            })
         }
 }]);
  
