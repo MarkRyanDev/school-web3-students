@@ -29,9 +29,7 @@ angular.module('app', [])
             });
         });
         $scope.removeStudent=function(student){
-            // _.remove($scope.students, function(s){
-            //     return s.id === student.id;
-            // });
+            $http.delete(`/api/v1/students/${student.id}.json`);
             _.remove($scope.students, student);
         }
 }]);
