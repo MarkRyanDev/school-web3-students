@@ -1,11 +1,4 @@
-function yearNumberToWord(year) {
-    if (year === 1) return "Freshman";
-    if (year === 2) return "Sophomore";
-    if (year === 3) return "Junior";
-    if (year === 4) return "Senior";
-    if (year > 4) return "You have attended College for longer than 4 years. Congrats, you must be a CS student :)  Good Luck";
-    return "Error";
-}
+
 angular.module('app', ['ngMaterial', 'ngMessages'])
     .factory('studentService', function($http) {
         //HTTP requests go here
@@ -25,6 +18,8 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
         $scope.editing = false;//toggle for whether we are editing or adding a student
         $scope.studentToEdit;//reference to student being edited
         $scope.studentToEditOld;//student being edited's old state (if changes are rejected)
+        $scope.orderedBy = 'fname';
+        $scope.tableView = true;
 
         //$scope functions
         $scope.removeStudent = function(student){
@@ -87,6 +82,23 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
                });
         };
 
+        $scope.reorder = function(newOrder){
+            if($scope.orderedBy === newOrder){
+                $scope.orderedBy = '-' + newOrder;
+            }
+            else{
+                $scope.orderedBy = newOrder;
+            }
+        }
+
+        $scope.yearNumberToWord  = function(year) {
+            if (year === 1) return "Freshman";
+            if (year === 2) return "Sophomore";
+            if (year === 3) return "Junior";
+            if (year === 4) return "Senior";
+            if (year > 4) return "Super Senior";
+            return "Error";
+        }
 
         //configuration/setup
         studentService.getStudents().then(function(res) {

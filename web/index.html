@@ -21,8 +21,8 @@
             <div id='topRight'>
                 <h1 id="titleAttributes" align="right">Student Information</h1>
                 <div id="tileTable">
-                    <button id="tileButton" type="button" title='Show Tile View'><span>tile</span></button>
-                    <button id="tableButton" type="button" title='Show Table View'><span>table</span></button>
+                    <button id="tileButton" type="button" title='Show Tile View' ng-click="tableView=false"><span>tile</span></button>
+                    <button id="tableButton" type="button" title='Show Table View' ng-click="tableView=true"><span>table</span></button>
                 </div>
             </div>
         </div>
@@ -30,7 +30,8 @@
         <div id="tilesContainer" class="hidden">
         </div>
 
-        <table id="tableClass" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <table id="tableClass" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+            ng-show="tableView">
             <thead>
                 <tr>
                     <th>
@@ -45,18 +46,26 @@
                             <i class="material-icons">restore</i>
                         </button>
                     </th>
-                    <th id="name" class="cursor mdl-data-table__cell--non-numeric">Name></th>
-                    <th id="startingDate" class="cursor mdl-data-table__cell--non-numeric">Starting Date></th>
-                    <th id="year" class="cursor mdl-data-table__cell--non-numeric">Year></th>
-                    <th id="streetAddress" class="cursor mdl-data-table__cell--non-numeric">Street Address></th>
-                    <th id="city" class="cursor mdl-data-table__cell--non-numeric">City></th>
-                    <th id="state" class="cursor mdl-data-table__cell--non-numeric">State></th>
-                    <th id="zip" class="cursor mdl-data-table__cell--non-numeric">Zip Code></th>
-                    <th id="phoneNumber" class="cursor mdl-data-table__cell--non-numeric">Phone Number></th>
+                    <th id="name" class="cursor mdl-data-table__cell--non-numeric"
+                        ng-click="reorder('lname')">Name</th>
+                    <th id="startingDate" class="cursor mdl-data-table__cell--non-numeric"
+                        ng-click="reorder('startDate')">Starting Date</th>
+                    <th id="year" class="cursor mdl-data-table__cell--non-numeric"
+                        ng-click="reorder('year')">Year</th>
+                    <th id="streetAddress" class="cursor mdl-data-table__cell--non-numeric"
+                        ng-click="reorder('street')">Street Address</th>
+                    <th id="city" class="cursor mdl-data-table__cell--non-numeric"
+                        ng-click="reorder('city')">City</th>
+                    <th id="state" class="cursor mdl-data-table__cell--non-numeric"
+                        ng-click="reorder('state')">State</th>
+                    <th id="zip" class="cursor mdl-data-table__cell--non-numeric"
+                        ng-click="reorder('zip')">Zip Code</th>
+                    <th id="phoneNumber" class="cursor mdl-data-table__cell--non-numeric"
+                        ng-click="reorder('phone')">Phone Number</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <tr ng-repeat="student in students">
+                <tr ng-repeat="student in students | orderBy:orderedBy">
                     <td>                        
                         <button type="button" id="edit" title='Click to edit this Student'
                             ng-click="edit(student)";
@@ -71,7 +80,7 @@
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">{{student.lname}}, {{student.fname}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{student.startDate}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{student.year}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{yearNumberToWord(student.year)}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{student.street}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{student.city}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{student.state}}</td>
