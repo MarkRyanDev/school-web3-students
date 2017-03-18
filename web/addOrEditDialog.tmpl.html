@@ -39,7 +39,7 @@
               <md-option value="2">Sophomore</md-option>
               <md-option value="3">Junior</md-option>
               <md-option value="4">Senior</md-option>
-              <md-option value="4">Super Senior</md-option>
+              <md-option value="5">Super Senior</md-option>
             </md-select>
           </md-input-container>
 
@@ -92,19 +92,17 @@
             </div>
           </md-input-container>
         </div>
+        <pre>{{studentToEdit | json}}</pre>
       </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-        More on Wikipedia
-      </md-button>
       <span flex></span>
-      <md-button ng-click="answer('not useful')">
-       Not Useful
+      <md-button ng-click="cancel()">
+       Cancel
       </md-button>
-      <md-button ng-click="answer('useful')">
-        Useful
+      <md-button ng-click="accept()">
+        Accept
       </md-button>
     </md-dialog-actions>
   </form>

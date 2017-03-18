@@ -38,6 +38,7 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
             $http.post('/api/v1/students', studentToRestore).then(function(res){
                 studentToRestore.id = res.data;
                 $scope.students.push(studentToRestore);
+
             })
         }
         $scope.addNew = function(ev) {
@@ -51,14 +52,41 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
                 clickOutsideToClose: false,
                 escapeToClose: false,
                 scope: $scope,
+                preserveScope: true,
                 fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
             })
-            .then(function(answer) {
-                $scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                $scope.status = 'You cancelled the dialog.';
+            .then(function() {
+                $http.post('/api/v1/students', $scope.studentToEdit).then( function(res){
+                    $scope.studentToEdit.id = res.data;
+                    $scope.students.push($scope.studentToEdit);
+                });
+
             });
         };
+
+        $scope.edit = function(studentToBeEdited) {
+            $scope.editing = true;
+            $scope.studentToEdit = studentToBeEdited;
+            $scope.studentToEditOld = _.cloneDeep(studentToBeEdited);
+            $mdDialog.show({
+                controller: dialogController,
+                templateUrl: 'addOrEditDialog.tmpl.html',
+                parent: angular.element(document.body),
+                //targetEvent: ev,
+                clickOutsideToClose: false,
+                escapeToClose: false,
+                scope: $scope,
+                preserveScope: true,
+                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+            })
+                .then(function() {
+                    $http.put(`/api/v1/students/${studentToBeEdited.id}.json`, $scope.studentToEdit);
+                }, function(){
+                    ;
+                    _.assign(_.find($scope.students, {id:$scope.studentToEdit.id}), $scope.studentToEditOld);
+               });
+        };
+
 
         //configuration/setup
         studentService.getStudents().then(function(res) {
@@ -74,16 +102,12 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
 }]);
 
 function dialogController($scope, $mdDialog){
-    $scope.hide = function() {
+/*    $scope.hide = function() {
       $mdDialog.hide();
-    };
+    };*/
 
-    $scope.cancel = function() {
-      $mdDialog.cancel();
-    };
+    $scope.cancel = $mdDialog.cancel;
 
-    $scope.answer = function(answer) {
-      $mdDialog.hide(answer);
-    };
+    $scope.accept = $mdDialog.hide;
 }
  

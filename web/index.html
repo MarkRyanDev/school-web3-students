@@ -58,11 +58,12 @@
             <tbody id="tableBody">
                 <tr ng-repeat="student in students">
                     <td>                        
-                        <button type="button" id="restore" title='Click to Restore Deleted Student' 
+                        <button type="button" id="edit" title='Click to edit this Student'
+                            ng-click="edit(student)";
                             class="mdl-button mdl-js-button mdl-button--mini-fab mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                             <i class="material-icons">edit</i>
                         </button>
-                        <button type="button" id="restore" title='Click to Restore Deleted Student' 
+                        <button type="button" id="delete" title='Click to Deleted this Student'
                             ng-click="removeStudent(student)"
                             class="mdl-button mdl-js-button mdl-button--mini-fab mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                             <i class="material-icons">delete</i>
