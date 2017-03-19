@@ -113,3 +113,7 @@
 #superContainer{
     margin: 10px;
 }
+
+.tile {
+    background-color: green;
+}
