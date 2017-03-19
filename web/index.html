@@ -21,8 +21,12 @@
             <div id='topRight'>
                 <h1 id="titleAttributes" align="right">Student Information</h1>
                 <div id="tileTable">
-                    <button id="tileButton" type="button" title='Show Tile View' ng-click="tableView=false"><span>tile</span></button>
-                    <button id="tableButton" type="button" title='Show Table View' ng-click="tableView=true"><span>table</span></button>
+                    <md-button class="md-icon-button" aria-label="Tile View" title='Show Tile View' ng-click="tableView=false">
+                        <i class="material-icons">apps</i>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Table View" title='Show Table View' ng-click="tableView=true">
+                        <i class="material-icons">menu</i>
+                    </md-button>
                 </div>
             </div>
         </div>
