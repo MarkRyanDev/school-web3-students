@@ -9,7 +9,7 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
         };
         return studentService;
     })
-    .controller('studentsController', ['$scope', 'studentService', '$http', '$mdDialog',
+   .controller('studentsController', ['$scope', 'studentService', '$http', '$mdDialog',
         function ($scope, studentService, $http, $mdDialog) {
         //$scope variables
         $scope.students = [];//array of students in table
@@ -33,7 +33,6 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
             $http.post('/api/v1/students', studentToRestore).then(function(res){
                 studentToRestore.id = res.data;
                 $scope.students.push(studentToRestore);
-
             })
         }
         $scope.addNew = function(ev) {
@@ -106,20 +105,25 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
                 $http.get(`/api/v1/students/${id}.json`).then(function(res){
                     let student = res.data;
                     student.id = id;
+                    student.startDate = new Date(student.startDate);
 
                     $scope.students.push(student);
                 });
             });
         });
-}]);
+}])
+.directive('dateFixer', function(){
+    return {
+        template: '{{date.toDateString()}}',
+        // replace: true,
+        scope: {
+            date: '='
+        }
+    }
+});
 
 function dialogController($scope, $mdDialog){
-/*    $scope.hide = function() {
-      $mdDialog.hide();
-    };*/
-
     $scope.cancel = $mdDialog.cancel;
-
     $scope.accept = $mdDialog.hide;
 }
  

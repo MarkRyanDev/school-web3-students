@@ -1,11 +1,12 @@
 {
   "fname": "Edward",
   "lname": "Hashimoto3",
-  "startDate": "7/27/93",
+  "startDate": "2017-03-01T07:00:00.000Z",
   "street": "1237 East Orchard Heights",
   "city": "Williamsburg",
   "state": "ID",
   "zip": 93673,
   "phone": "733-0469",
-  "year": 4
+  "year": 4,
+  "id": "0001"
 }

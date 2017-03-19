@@ -32,7 +32,7 @@
                 <md-card style="width: 300px;" ng-repeat="student in students">
                     <md-card-content>
                         <h4>{{student.lname}}, {{student.fname}}</h4>
-                        <p>{{student.startDate}}</p>
+                        <date-fixer date="student.startDate"></date-fixer>
                         <p>{{yearNumberToWord(student.year)}}</p>
                         <p>{{student.street}}</p>
                         <p>{{student.city}}</p>
@@ -93,7 +93,7 @@
                         </button>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">{{student.lname}}, {{student.fname}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{student.startDate}}</td>
+                    <td class="mdl-data-table__cell--non-numeric"><date-fixer date="student.startDate"></date-fixer></td>
                     <td class="mdl-data-table__cell--non-numeric">{{yearNumberToWord(student.year)}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{student.street}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{student.city}}</td>
