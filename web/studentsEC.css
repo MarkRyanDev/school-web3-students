@@ -114,6 +114,6 @@
     margin: 10px;
 }
 
-.tile {
-    background-color: green;
+#tilesContainer p {
+    margin: 0px;
 }

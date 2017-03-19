@@ -27,13 +27,13 @@
             </div>
         </div>
 
-        <div id="tilesContainer">
+        <div id="tilesContainer" ng-hide="tableView">
             <div class='md-padding' layout="row" layout-wrap>
                 <md-card style="width: 300px;" ng-repeat="student in students">
                     <md-card-content>
                         <h4>{{student.lname}}, {{student.fname}}</h4>
                         <p>{{student.startDate}}</p>
-                        <p>{{yearNumberToString(student.year)}}</p>
+                        <p>{{yearNumberToWord(student.year)}}</p>
                         <p>{{student.street}}</p>
                         <p>{{student.city}}</p>
                         <p>{{student.state}}</p>
@@ -103,7 +103,7 @@
                 </tr>
             </tbody>
         </table>
-        <pre>{{students | json}}</pre>
+        <!--<pre>{{students | json}}</pre>-->
     </div>
 
 
