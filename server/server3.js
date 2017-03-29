@@ -21,6 +21,7 @@ var fsRouter = require('./students-fs-dao.js');
 var colors = require('colors');
 var logger = require('morgan');
 var winston = require('winston');
+var nconf = require('nconf');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser'); //NEW
@@ -125,7 +126,7 @@ app.use('/api/v1', fsRouter);
 // });
 
 //------------------Other Server Setup-----------------------------------
-
+nconf.argv().env().file({file: 'config.json'});
 //traditional webserver stuff for serving static files
 app.use(express.static(WEB)); //this turns it into a server like Apache server that we were using before //secret sauce //will feed your html your images 
 
@@ -133,11 +134,13 @@ app.get('*', function(req, res) {
     res.status(404).sendFile(WEB + '/404.html');
 });
 
-var server = app.listen(8080, "127.0.0.1", function() {
-    winston.info(`Server listening on port 8080`.green);
+var server = app.listen(nconf.get('port'), nconf.get('host'), function() {
+    winston.info(`Server listening on ${nconf.get('host')}:${nconf.get('port')}`.green);
 });
 
 winston.info('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-790NerRe_ptgJZdBOXOFGX7fFqPJ9PjIMLucI/edit#gid=0'.yellow);
+
+
 
 
 //------------------------------Shutdown Stuff-----------------------------------
