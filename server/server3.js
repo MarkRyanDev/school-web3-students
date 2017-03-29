@@ -18,6 +18,7 @@ var fsRouter = require('./students-fs-dao.js');
 //var mysqlRouter = require('./students-mysql-dao.js');
 
 //var _ = require('lodash');
+var colors = require('colors');
 var logger = require('morgan');
 var compression = require('compression');
 var favicon = require('serve-favicon');
@@ -129,18 +130,18 @@ app.get('*', function(req, res) {
 });
 
 var server = app.listen(8080, "127.0.0.1", function() {
-    console.log(`Server listening on port 8080`);
+    console.log(`Server listening on port 8080`.green);
 });
 
-console.log('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-790NerRe_ptgJZdBOXOFGX7fFqPJ9PjIMLucI/edit#gid=0');
+console.log('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-790NerRe_ptgJZdBOXOFGX7fFqPJ9PjIMLucI/edit#gid=0'.yellow);
 
 
 //------------------------------Shutdown Stuff-----------------------------------
 
 function gracefullShutdown() {
-    console.log('\nStarting Shutdown');
+    console.log('\nStarting Shutdown'.blue);
     server.close(function() {
-        console.log('\nShutdown Complete');
+        console.log('\nShutdown Complete'.red);
     });
 }
 
