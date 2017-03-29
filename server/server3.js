@@ -137,8 +137,7 @@ console.log('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-79
 
 //------------------------------Shutdown Stuff-----------------------------------
 
-function gracefullShutdown(msg1, msg2) {
-    console.log(`\ngracefullShutdown called with these messages: ${msg1}\n${msg2}`);
+function gracefullShutdown() {
     console.log('\nStarting Shutdown');
     server.close(function() {
         console.log('\nShutdown Complete');
