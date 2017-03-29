@@ -61,3 +61,5 @@ typings/
 # stuff we're adding
 .idea
 .vscode
+
+winston log

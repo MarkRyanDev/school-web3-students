@@ -20,6 +20,7 @@ var fsRouter = require('./students-fs-dao.js');
 //var _ = require('lodash');
 var colors = require('colors');
 var logger = require('morgan');
+var winston = require('winston');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser'); //NEW
@@ -29,7 +30,10 @@ var bodyParser = require('body-parser'); //NEW
 var app = express();
 
 //--------------------------insert middleware------------------------------------
-app.use(logger('dev'));
+winston.stream = {
+    write: function(message, encoding){winston.info(message.trim())}  };
+winston.add(winston.transports.File, {filename: 'winston log'})
+app.use(logger('dev', {stream: winston.stream, colorize: false}));
 
 app.use(compression()); //NEW
 app.use(favicon(WEB + '/favicon.ico')); //NEW
@@ -130,18 +134,18 @@ app.get('*', function(req, res) {
 });
 
 var server = app.listen(8080, "127.0.0.1", function() {
-    console.log(`Server listening on port 8080`.green);
+    winston.info(`Server listening on port 8080`.green);
 });
 
-console.log('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-790NerRe_ptgJZdBOXOFGX7fFqPJ9PjIMLucI/edit#gid=0'.yellow);
+winston.info('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-790NerRe_ptgJZdBOXOFGX7fFqPJ9PjIMLucI/edit#gid=0'.yellow);
 
 
 //------------------------------Shutdown Stuff-----------------------------------
 
 function gracefullShutdown() {
-    console.log('\nStarting Shutdown'.blue);
+    winston.info('Starting Shutdown'.blue);
     server.close(function() {
-        console.log('\nShutdown Complete'.red);
+        winston.info('Shutdown Complete'.red);
     });
 }
 
