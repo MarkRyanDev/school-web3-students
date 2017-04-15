@@ -14,7 +14,8 @@ var fs = require('fs');
 
 //--------------------------load express middleware modules----------------------------------------
 
-var fsRouter = require('./students-fs-dao.js');
+// var fsRouter = require('./students-fs-dao.js');
+var routes = require('./students-router.js');
 //var mysqlRouter = require('./students-mysql-dao.js');
 
 //var _ = require('lodash');
@@ -44,7 +45,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 })); // for parsing application
 
-app.use('/api/v1', fsRouter);
+// app.use('/api/v1', fsRouter);
+app.use('/api/v1', routes);
 //app.use('/api/v2', mysqlRouter);
 
 //------------------Helper Functions--------------------------------
