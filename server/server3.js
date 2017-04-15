@@ -26,6 +26,7 @@ var nconf = require('nconf');
 var compression = require('compression');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser'); //NEW
+var exec = require('child_process').exec;
 //var sleepAttribute = require('sleep');
 
 //create express app
@@ -128,6 +129,8 @@ app.use('/api/v1', routes);
 // });
 
 //------------------Other Server Setup-----------------------------------
+var dbProc = exec('mongod --dbpath=mongo --port 27017');
+
 nconf.argv().env().file({file: 'config.json'});
 //traditional webserver stuff for serving static files
 app.use(express.static(WEB)); //this turns it into a server like Apache server that we were using before //secret sauce //will feed your html your images 
@@ -149,6 +152,7 @@ winston.info('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-7
 
 function gracefullShutdown() {
     winston.info('Starting Shutdown'.blue);
+    dbProc.kill();
     server.close(function() {
         winston.info('Shutdown Complete'.red);
     });
