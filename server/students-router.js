@@ -5,6 +5,7 @@ var dao = require('./students-mongo-dao.js');
 
 //Create
 router.post('/students', function(req, res) {
+    console.log(req.body);
     dao.create(req.body, function(err, id){
         if (err) throw err;
         res.status(201).json(id);
