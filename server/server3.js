@@ -129,7 +129,7 @@ app.use('/api/v1', routes);
 // });
 
 //------------------Other Server Setup-----------------------------------
-var dbProc = exec('mongod --dbpath=mongo --port 27017');
+// var dbProc = exec('mongod --dbpath=mongo --port 27017');
 
 nconf.argv().env().file({file: 'config.json'});
 //traditional webserver stuff for serving static files
@@ -152,7 +152,7 @@ winston.info('API explanation at https://docs.google.com/spreadsheets/d/1LBNDk-7
 
 function gracefullShutdown() {
     winston.info('Starting Shutdown'.blue);
-    dbProc.kill();
+    // dbProc.kill();
     server.close(function() {
         winston.info('Shutdown Complete'.red);
     });
