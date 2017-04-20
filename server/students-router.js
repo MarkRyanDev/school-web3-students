@@ -1,7 +1,9 @@
 var express = require('express');
 var _ = require('lodash');
 var router = express.Router();
-var dao = require('./students-mongo-dao.js');
+// var dao = require('./students-mongo-dao.js');
+var dao = require('./students-mysql-dao.js');
+
 
 //Create
 router.post('/students', function(req, res) {
