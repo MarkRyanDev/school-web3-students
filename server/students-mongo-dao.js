@@ -1,4 +1,3 @@
-var express = require('express');
 var _ = require('lodash');
 var mongoall = require('mongodb');
 var mongo = mongoall.MongoClient;

@@ -1,7 +1,5 @@
-var express = require('express');
 var mysql = require('mysql');
 // var _ = require('lodash');
-var router = express.Router();
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -12,26 +10,20 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+var exports;
+
 //Create
-router.post('/students', function(req, res) {
-    // var id = generateUniqueID();
-    // fs.writeFile(`students/${id}.json`, JSON.stringify(req.body, null, 2), 'utf8', function(err) {
-    //     if (err) throw err;
-    //     res.status(201).json(id);
-    // });
+exports.create = function(student, callback){
+// router.post('/students', function(req, res) {
 
-    var student = req.body;
-
-    student.startDate = new Date(student.startDate);
-    student.startDate = `${student.startDate.getFullYear()}-${student.startDate.getMonth() + 1}-${student.startDate.getDate()}`;
+    // student.startDate = `${student.startDate.getFullYear()}-${student.startDate.getMonth() + 1}-${student.startDate.getDate()}`;
 
     connection.query(`INSERT INTO students (fname, lname, startDate, street, city, state, zip, phone, year) VALUES ("${student.fname}","${student.lname}",DATE("${student.startDate}"),"${student.street}",
     "${student.city}","${student.state}",${parseInt(student.zip)},"${student.phone}",${parseInt(student.year)})`, (err, rows, fields) => {
-        if (err) throw err;
-        res.status(201).json(rows.insertId);
+        callback(err, rows.insertId);
     });
 
-});
+};
 
 //     //Read
 router.get('/students/:id', function(req, res) {
@@ -97,4 +89,4 @@ router.get('/students', function(req, res) {
     });
 });
 
-module.exports = router;
+module.exports = exports;
