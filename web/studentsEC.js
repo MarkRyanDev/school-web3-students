@@ -91,6 +91,7 @@ angular.module('app', ['ngMaterial', 'ngMessages'])
         }
 
         $scope.yearNumberToWord  = function(year) {
+            year = parseInt(year);
             if (year === 1) return "Freshman";
             if (year === 2) return "Sophomore";
             if (year === 3) return "Junior";

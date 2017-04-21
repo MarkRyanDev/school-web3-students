@@ -2,7 +2,7 @@ var mysql = require('mysql');
 // var _ = require('lodash');
 
 var connection = mysql.createConnection({
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     user: 'root',
     password: 'SECRET',
     database: 'students'
