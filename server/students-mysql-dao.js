@@ -2,9 +2,9 @@ var mysql = require('mysql');
 // var _ = require('lodash');
 
 var connection = mysql.createConnection({
-    host: 'localhost',
+    host: '0.0.0.0',
     user: 'root',
-    password: '',
+    password: 'SECRET',
     database: 'students'
 });
 
@@ -15,11 +15,11 @@ var exports;
 //Create
 exports.create = function(student, callback){
 // router.post('/students', function(req, res) {
-
-    // student.startDate = `${student.startDate.getFullYear()}-${student.startDate.getMonth() + 1}-${student.startDate.getDate()}`;
+    student.startDate = new Date(student.startDate);
+    student.startDate = `${student.startDate.getFullYear()}-${student.startDate.getMonth() + 1}-${student.startDate.getDate()}`;
 
     connection.query(`INSERT INTO students (fname, lname, startDate, street, city, state, zip, phone, year) VALUES ("${student.fname}","${student.lname}",DATE("${student.startDate}"),"${student.street}",
-    "${student.city}","${student.state}",${parseInt(student.zip)},"${student.phone}",${parseInt(student.year)})`, (err, rows, fields) => {
+    "${student.city}","${student.state}",${parseInt(student.zip)},"${student.phone}",${student.year})`, (err, rows, fields) => {
         callback(err, rows.insertId);
     });
 
@@ -52,15 +52,15 @@ exports.update = function(id, student, callback){
     for (var property in data) {
         // if (property === 'zip' || property === 'year')
         //     updatedInfo += `${property}=${data[property]},`;
-        // if (property === 'startDate'){
-        //     var date = data[property];
-        //     date = new Date(date);
-        //     date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-        //     updatedInfo += `${property}="${date}",`;
-        // }
-        // else {
+        if (property === 'startDate'){
+            var date = data[property];
+            date = new Date(date);
+            date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+            updatedInfo += `${property}="${date}",`;
+        }
+        else {
             updatedInfo += `${property}="${data[property]}",`; ///!!!!!!!!!!!!!TODO FIX THIS
-        //}
+        }
     }
     updatedInfo = updatedInfo.slice(0, -1);
 
